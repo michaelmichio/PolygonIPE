@@ -42,10 +42,13 @@ public class AreaOfPolygon implements CGA {
         if(idxMinY != 0) { // sort for y
             if(idxMinY == vertices.size() - 1) {
                 pointsTemp.add(vertices.get(idxMinY));
-                for(int i = 0; i < vertices.size() - 2; i++) {
+                for(int i = 0; i < vertices.size() - 1; i++) {
                     pointsTemp.add(vertices.get(i));
                 }
-                vertices = pointsTemp;
+                vertices.clear();
+                for(Point p : pointsTemp) {
+                    vertices.add(p);
+                }
             }
             else {
                 for(int i = idxMinY; i < vertices.size(); i++) {
@@ -66,11 +69,15 @@ public class AreaOfPolygon implements CGA {
             for(int i = vertices.size() - 1; i > 0; i--) {
                 pointsTemp.add(vertices.get(i));
             }
-            vertices = pointsTemp;
+            vertices.clear();
+            for(Point p : pointsTemp) {
+                vertices.add(p);
+            }
         }
-//        for(Point p : vertices) {
-//            System.out.println(p.toString());
-//        }
+        pointsTemp.clear();
+        for(Point p : vertices) {
+            System.out.println(p.toString());
+        }
     }
 
     private void generateSteps() {

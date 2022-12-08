@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AreaOfPolygon implements CGA {
     private Document doc;
-    private ArrayList<Point> vertices;
+    private ArrayList<Point> vertices = new ArrayList<>();
     private String[] pathValues;
 
     public AreaOfPolygon(Document doc) {
@@ -29,6 +29,7 @@ public class AreaOfPolygon implements CGA {
     }
 
     private void sortVertices() {
+        ArrayList<Point> pointsTemp = new ArrayList<>();
         // find vertice with the lowest y
         double minY = Integer.MAX_VALUE;
         int idxMinY = 0;
@@ -38,13 +39,38 @@ public class AreaOfPolygon implements CGA {
                 idxMinY = i;
             }
         }
-        // check previous and next point from vertices.get(idxMinY)
-        if(idxMinY == 0) { // compare index 1 and size()-1
-
+        if(idxMinY != 0) { // sort for y
+            if(idxMinY == vertices.size() - 1) {
+                pointsTemp.add(vertices.get(idxMinY));
+                for(int i = 0; i < vertices.size() - 2; i++) {
+                    pointsTemp.add(vertices.get(i));
+                }
+                vertices = pointsTemp;
+            }
+            else {
+                for(int i = idxMinY; i < vertices.size(); i++) {
+                    pointsTemp.add(vertices.get(i));
+                }
+                for(int i = 0; i < idxMinY; i++) {
+                    pointsTemp.add(vertices.get(i));
+                }
+                vertices.clear();
+                for(Point p : pointsTemp) {
+                    vertices.add(p);
+                }
+            }
         }
-        else { // compare index idxMinY-1 and idxMinY+1
-
+        pointsTemp.clear();
+        if(vertices.get(1).x < vertices.get(vertices.size()-1).x) { // sort for x
+            pointsTemp.add(vertices.get(0));
+            for(int i = vertices.size() - 1; i > 0; i--) {
+                pointsTemp.add(vertices.get(i));
+            }
+            vertices = pointsTemp;
         }
+//        for(Point p : vertices) {
+//            System.out.println(p.toString());
+//        }
     }
 
     private void generateSteps() {

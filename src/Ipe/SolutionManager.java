@@ -23,8 +23,6 @@ public class SolutionManager {
     }
 
     private void runAlgorithm() {
-        DocumentManager documentManager = new DocumentManager(this.doc);
-
 
         switch (this.algorithm) {
             case "area-of-polygon":

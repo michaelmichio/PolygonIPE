@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class DocumentManager {
     private Document doc;
-    private ArrayList<Point> points;
-    private ArrayList<LineSegment> lineSegments;
-    private ArrayList<Polygon> polygons;
+    private ArrayList<Point> points = new ArrayList<>();
+    private ArrayList<LineSegment> lineSegments = new ArrayList<>();
+    private ArrayList<Polygon> polygons = new ArrayList<>();
 
     public DocumentManager(Document doc) {
         this.doc = doc;
@@ -129,7 +129,7 @@ public class DocumentManager {
                                     // paths[0] is blank
                                     ArrayList<Point> vertices = new ArrayList<>();
                                     for(int k = 1; k < paths.length - 2; k++) {
-                                        String[] m = paths[i].split(" ");
+                                        String[] m = paths[k].split(" ");
                                         vertices.add(new Point(Integer.parseInt(m[0]), Integer.parseInt(m[1])));
                                     }
                                     String[] l = paths[paths.length - 2].split(" ");

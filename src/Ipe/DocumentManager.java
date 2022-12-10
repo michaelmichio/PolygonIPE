@@ -1,5 +1,6 @@
 package Ipe;
 
+import CG.Elements.Layer;
 import CG.Objects.LineSegment;
 import CG.Objects.Point;
 import CG.Objects.Polygon;
@@ -8,6 +9,7 @@ import org.w3c.dom.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class DocumentManager {
     private Document doc;
@@ -30,6 +32,78 @@ public class DocumentManager {
 
     public ArrayList<Polygon> getPolygons() {
         return this.polygons;
+    }
+
+    public Document printOutputDocument(ArrayList<Layer> layers) {
+        Node ipeNode = this.doc.getElementsByTagName("ipe").item(0);
+        NodeList ipeNodeList = ipeNode.getChildNodes();
+        for(int i = 0; i < ipeNodeList.getLength(); i++) {
+            Node ipeChildNode = ipeNodeList.item(i);
+            if(ipeChildNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element ipeChildElement = (Element) ipeChildNode;
+                if(ipeChildElement.getTagName().equals("page")) {
+                    NodeList pageNodeList = ipeChildElement.getChildNodes();
+
+                    // generate new layers
+                    for(int j = 0 ; j < layers.size(); j++) {
+                        Element element = ipeChildElement.getOwnerDocument().createElement("layer");
+                        ipeChildElement.appendChild(element);
+
+                        Attr attr = ipeChildElement.getOwnerDocument().createAttribute("name");
+                        attr.setValue(String.valueOf(j));
+                        element.setAttributeNode(attr);
+                    }
+
+                    // generate new views
+                    for(int j = 0 ; j < layers.size(); j++) {
+                        Element element = ipeChildElement.getOwnerDocument().createElement("view");
+                        ipeChildElement.appendChild(element);
+
+                        Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
+                        if(j == 0) {
+                            attr.setValue("0");
+                        }
+                        else {
+                            attr.setValue("0 " + j);
+                        }
+                        element.setAttributeNode(attr);
+                    }
+
+                    // generate new paths
+                    for(int j = 0 ; j < layers.size(); j++) {
+                        Element element;
+                        Attr attr;
+                        Text text;
+
+                        // type
+                        element = ipeChildElement.getOwnerDocument().createElement(layers.get(j).layerType);
+                        ipeChildElement.appendChild(element);
+
+                        // attributes
+                        for(int k = 0; k < layers.get(j).attributes.size(); k++) {
+                            Set keys = layers.get(j).attributes.keySet();
+                            for(Object key : keys) {
+                                attr = element.getOwnerDocument().createAttribute(key.toString());
+                                attr.setValue(layers.get(j).attributes.get(key));
+                                element.setAttributeNode(attr);
+                            }
+                        }
+
+                        // text
+                        for(int k = 0; k < layers.get(j).paths.size(); k++) {
+                            String[] texts = layers.get(j).paths.get(k).polygon();
+                            for(String str : texts) {
+                                text = this.doc.createTextNode("\n" + str);
+                                element.appendChild(text);
+                            }
+                            text = this.doc.createTextNode("\n");
+                            element.appendChild(text);
+                        }
+                    }
+                }
+            }
+        }
+        return this.doc;
     }
 
     private void getObject() {

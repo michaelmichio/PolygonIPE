@@ -86,35 +86,40 @@ public class AreaOfPolygon implements CGA {
         }
 
         // set initial layer
+        int currentLayer = 0;
+
         attributes.put("layer", "0");
-        attributes.put("stroke", "black");
+        attributes.put("fill", "white");
         paths.add(new Path(points));
         layers.add(new Layer("path", attributes, paths, null));
+        currentLayer++;
 
         // set step layers
+        double totalArea = 0.0;
+        double additionArea = 0.0;
         for(int i = 0; i < vertices.size() - 2; i++) {
+//            // ---
 //            attributes = new HashMap<>();
 //            paths = new ArrayList<>();
 //
 //            points = new ArrayList<>();
-//            for(Point p : vertices) {
-//                points.add(p);
+//            for(Point pp : vertices) {
+//                points.add(pp);
 //            }
 //
-//            attributes.put("layer", String.valueOf(i+1));
-//            attributes.put("stroke", "white");
+//            attributes.put("layer", String.valueOf(currentLayer));
 //            attributes.put("fill", "lightgreen");
 //            attributes.put("opacity", "50%");
-//            attributes.put("stroke-opacity", "opaque");
 //            paths.add(new Path(points).subPath(0, i+2));
 //            layers.add(new Layer("path", attributes, paths, null));
+//            currentLayer++;
+//            // ---
 
             LineSegment ls = new LineSegment(new Point(vertices.get(0).x, vertices.get(0).y),
                     new Point(vertices.get(i + 1).x, vertices.get(i + 1).y));
             Point p = new Point(vertices.get(i + 2).x, vertices.get(i + 2).y);
+
             if(ls.crossProductToPoint(p) > 0) { // right
-                // ...
-//                System.out.println("right: " + ls.crossProductToPoint(p));
                 attributes = new HashMap<>();
                 paths = new ArrayList<>();
 
@@ -123,17 +128,33 @@ public class AreaOfPolygon implements CGA {
                     points.add(pp);
                 }
 
-                attributes.put("layer", String.valueOf(i+1));
-                attributes.put("stroke", "white");
+                attributes.put("layer", String.valueOf(currentLayer));
                 attributes.put("fill", "lightgreen");
                 attributes.put("opacity", "50%");
-                attributes.put("stroke-opacity", "opaque");
-                paths.add(new Path(points).triangulation(i+1, i+2));
+                paths.add(new Path(points).triangulation(0, i+1, i+2));
                 layers.add(new Layer("path", attributes, paths, null));
+
+                // label
+//                additionArea = new Path(points).triangle(i, i+1, i+2);
+//                String[] texts = new String[1];
+//                texts[0] = totalArea + " + " + additionArea + " = " + totalArea + additionArea;
+//                paths.add(new Path(points).text(texts));
+//                totalArea += new Path(points).triangle(i, i+1, i+2);
+//
+//                attributes.put("matrix", "1 0 0 1 -656 -32");
+//                attributes.put("transformations", "translations");
+//                attributes.put("pos", "672 48");
+//                attributes.put("stroke", "black");
+//                attributes.put("type", "label");
+//                attributes.put("width", "186.439");
+//                attributes.put("height", "18.5735");
+//                attributes.put("depth", "0.2475");
+//                attributes.put("valign", "baseline");
+//                layers.add(new Layer("text", attributes, paths, null));
+
+                currentLayer++;
             }
             else if(ls.crossProductToPoint(p) < 0) { // left
-                // ...
-//                System.out.println("left: " + ls.crossProductToPoint(p));
                 attributes = new HashMap<>();
                 paths = new ArrayList<>();
 
@@ -142,18 +163,45 @@ public class AreaOfPolygon implements CGA {
                     points.add(pp);
                 }
 
-                attributes.put("layer", String.valueOf(i+1));
-                attributes.put("stroke", "white");
+                attributes.put("layer", String.valueOf(currentLayer));
                 attributes.put("fill", "red");
                 attributes.put("opacity", "50%");
-                attributes.put("stroke-opacity", "opaque");
-                paths.add(new Path(points).triangulation(i+1, i+2));
+                paths.add(new Path(points).triangulation(0, i+1, i+2));
                 layers.add(new Layer("path", attributes, paths, null));
+                currentLayer++;
+
+                attributes = new HashMap<>();
+                paths = new ArrayList<>();
+
+                points = new ArrayList<>();
+                for(Point pp : vertices) {
+                    points.add(pp);
+                }
+
+                attributes.put("layer", String.valueOf(currentLayer));
+                attributes.put("fill", "white");
+                attributes.put("stroke", "white");
+                paths.add(new Path(points).triangulation(0, i+1, i+2));
+                layers.add(new Layer("path", attributes, paths, null));
+                currentLayer++;
             }
             else { // collinear
                 // ...
             }
         }
+
+        attributes = new HashMap<>();
+        paths = new ArrayList<>();
+
+        points = new ArrayList<>();
+        for(Point pp : vertices) {
+            points.add(pp);
+        }
+
+        attributes.put("layer", String.valueOf(currentLayer));
+        attributes.put("stroke", "black");
+        paths.add(new Path(points));
+        layers.add(new Layer("path", attributes, paths, null));
 
         return layers;
     }

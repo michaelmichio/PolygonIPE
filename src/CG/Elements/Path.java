@@ -17,6 +17,13 @@ public class Path {
         this.paths = paths;
     }
 
+    public String[] getPath() {
+        if(this.paths.length == 1) {
+            return this.label();
+        }
+        return this.polygon();
+    }
+
     public String[] polygon() {
         String[] polygon = new String[this.paths.length + 1];
         for(int i = 0; i < polygon.length; i++) {
@@ -33,6 +40,10 @@ public class Path {
         return polygon;
     }
 
+    public String[] label() {
+        return this.paths;
+    }
+
     public Path subPath(int start, int end) {
         String[] subPaths = new String[end - start + 1];
         int idx = 0;
@@ -44,12 +55,21 @@ public class Path {
         return this;
     }
 
-    public Path triangulation(int p1, int p2) {
+    public Path triangulation(int p1, int p2, int p3) {
         String[] triangulation = new String[3];
-        triangulation[0] = this.paths[0];
-        triangulation[1] = this.paths[p1];
-        triangulation[2] = this.paths[p2];
+        triangulation[0] = this.paths[p1];
+        triangulation[1] = this.paths[p2];
+        triangulation[2] = this.paths[p3];
         this.paths = triangulation;
         return this;
+    }
+
+    public Path text(String[] texts) {
+        this.paths = texts;
+        return this;
+    }
+
+    public double triangle(int p1, int p2, int p3) {
+        return Math.abs((this.vertices.get(p1).x * (this.vertices.get(p2).y - this.vertices.get(p3).y) + this.vertices.get(p2).x * (this.vertices.get(p3).y - this.vertices.get(p1).y) + this.vertices.get(p3).x * (this.vertices.get(p1).y - this.vertices.get(p2).y)) / 2.0);
     }
 }

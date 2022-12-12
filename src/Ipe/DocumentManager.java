@@ -56,25 +56,35 @@ public class DocumentManager {
 
                     // generate new views
                     String view = "";
-                    for(int j = 0 ; j < layers.size() - 1; j++) {
-                        Element element = ipeChildElement.getOwnerDocument().createElement("view");
-                        ipeChildElement.appendChild(element);
-
-                        Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
+                    for(int j = 0 ; j <= Integer.parseInt(layers.get(layers.size()-1).view) - 1; j++) { // need to fix
                         if(j == 0) {
+                            Element element = ipeChildElement.getOwnerDocument().createElement("view");
+                            ipeChildElement.appendChild(element);
+                            Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
                             view = "0";
                             attr.setValue(view + " " + String.valueOf(layers.size() - 1));
+                            element.setAttributeNode(attr);
                         }
                         else if(j == 1) {
+                            Element element = ipeChildElement.getOwnerDocument().createElement("view");
+                            ipeChildElement.appendChild(element);
+                            Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
                             view = "1";
                             attr.setValue("0 " + view + " " + String.valueOf(layers.size() - 1));
+                            element.setAttributeNode(attr);
                         }
                         else {
-                            view += " " + j;
+                            // view += " " + j;
                             // view = String.valueOf(j);
-                            attr.setValue("0 " + view + " " + String.valueOf(layers.size() - 1));
+                            if(!layers.get(j).view.equals("")) {
+                                Element element = ipeChildElement.getOwnerDocument().createElement("view");
+                                ipeChildElement.appendChild(element);
+                                Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
+                                view = layers.get(j).view;
+                                attr.setValue("0 " + view + " " + String.valueOf(layers.size() - 1));
+                                element.setAttributeNode(attr);
+                            }
                         }
-                        element.setAttributeNode(attr);
                     }
 
                     // generate new layers

@@ -12,12 +12,14 @@ public class LineSegment {
     public double crossProductToPoint(Point p) {
         double Bx = this.p2.x;
         double By = this.p2.y;
+        double Px = p.x;
+        double Py = p.y;
         Bx -= this.p1.x;
         By -= this.p1.y;
-        p.x -= this.p1.x;
-        p.y -= this.p1.y;
+        Px -= this.p1.x;
+        Py -= this.p1.y;
 
-        return Bx * p.y - By * p.x;
+        return Bx * Py - By * Px;
     }
 
 }

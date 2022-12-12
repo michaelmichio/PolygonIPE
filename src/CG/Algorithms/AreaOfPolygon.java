@@ -93,33 +93,47 @@ public class AreaOfPolygon implements CGA {
 
         // set step layers
         for(int i = 0; i < vertices.size() - 2; i++) {
-            attributes = new HashMap<>();
-            paths = new ArrayList<>();
-
-            points = new ArrayList<>();
-            for(Point p : vertices) {
-                points.add(p);
-            }
-
-            attributes.put("layer", String.valueOf(i+1));
-            attributes.put("stroke", "white");
-            attributes.put("fill", "lightgreen");
-            attributes.put("opacity", "50%");
-            attributes.put("stroke-opacity", "opaque");
-            paths.add(new Path(points).subPath(0, i+2));
-            layers.add(new Layer("path", attributes, paths, null));
+//            attributes = new HashMap<>();
+//            paths = new ArrayList<>();
+//
+//            points = new ArrayList<>();
+//            for(Point p : vertices) {
+//                points.add(p);
+//            }
+//
+//            attributes.put("layer", String.valueOf(i+1));
+//            attributes.put("stroke", "white");
+//            attributes.put("fill", "lightgreen");
+//            attributes.put("opacity", "50%");
+//            attributes.put("stroke-opacity", "opaque");
+//            paths.add(new Path(points).subPath(0, i+2));
+//            layers.add(new Layer("path", attributes, paths, null));
 
             LineSegment ls = new LineSegment(new Point(vertices.get(0).x, vertices.get(0).y),
                     new Point(vertices.get(i + 1).x, vertices.get(i + 1).y));
             Point p = new Point(vertices.get(i + 2).x, vertices.get(i + 2).y);
             if(ls.crossProductToPoint(p) > 0) { // right
                 // ...
+//                System.out.println("right: " + ls.crossProductToPoint(p));
+                attributes = new HashMap<>();
+                paths = new ArrayList<>();
+
+                points = new ArrayList<>();
+                for(Point pp : vertices) {
+                    points.add(pp);
+                }
+
+                attributes.put("layer", String.valueOf(i+1));
+                attributes.put("stroke", "white");
+                attributes.put("fill", "lightgreen");
+                attributes.put("opacity", "50%");
+                attributes.put("stroke-opacity", "opaque");
+                paths.add(new Path(points).triangulation(i+1, i+2));
+                layers.add(new Layer("path", attributes, paths, null));
             }
             else if(ls.crossProductToPoint(p) < 0) { // left
                 // ...
-            }
-            else { // collinear
-                // ...
+//                System.out.println("left: " + ls.crossProductToPoint(p));
                 attributes = new HashMap<>();
                 paths = new ArrayList<>();
 
@@ -135,6 +149,9 @@ public class AreaOfPolygon implements CGA {
                 attributes.put("stroke-opacity", "opaque");
                 paths.add(new Path(points).triangulation(i+1, i+2));
                 layers.add(new Layer("path", attributes, paths, null));
+            }
+            else { // collinear
+                // ...
             }
         }
 

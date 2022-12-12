@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ipe creator="Ipe 7.2.26" version="70218">
 
-<info created="D:20221210200203" modified="D:20221210200203"/>
+<info created="D:20221212080445" modified="D:20221212080445"/>
 
 <ipestyle name="basic">
 
@@ -477,11 +477,6 @@ h
 <layer name="11"/>
 <layer name="12"/>
 <layer name="13"/>
-<layer name="14"/>
-<layer name="15"/>
-<layer name="16"/>
-<layer name="17"/>
-<layer name="18"/>
 <view layers="0"/>
 <view layers="0 1"/>
 <view layers="0 2"/>
@@ -496,11 +491,6 @@ h
 <view layers="0 11"/>
 <view layers="0 12"/>
 <view layers="0 13"/>
-<view layers="0 14"/>
-<view layers="0 15"/>
-<view layers="0 16"/>
-<view layers="0 17"/>
-<view layers="0 18"/>
 <path layer="0" stroke="black">
 288.0 480.0 m
 384.0 512.0 l
@@ -527,59 +517,32 @@ h
 </path>
 <path fill="lightgreen" layer="2" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
 448.0 608.0 l
 400.0 736.0 l
 h
 </path>
 <path fill="lightgreen" layer="3" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
 400.0 736.0 l
 272.0 768.0 l
 h
 </path>
 <path fill="lightgreen" layer="4" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
 272.0 768.0 l
 192.0 736.0 l
 h
 </path>
 <path fill="lightgreen" layer="5" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
 192.0 736.0 l
 160.0 672.0 l
 h
 </path>
 <path fill="lightgreen" layer="6" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
 160.0 672.0 l
 192.0 576.0 l
-h
-</path>
-<path fill="lightgreen" layer="7" opacity="50%" stroke="white" stroke-opacity="opaque">
-288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
 h
 </path>
 <path fill="red" layer="7" opacity="50%" stroke="white" stroke-opacity="opaque">
@@ -588,37 +551,10 @@ h
 256.0 720.0 l
 h
 </path>
-<path fill="lightgreen" layer="8" opacity="50%" stroke="white" stroke-opacity="opaque">
-288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
-304.0 688.0 l
-h
-</path>
 <path fill="red" layer="8" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
 256.0 720.0 l
 304.0 688.0 l
-h
-</path>
-<path fill="lightgreen" layer="9" opacity="50%" stroke="white" stroke-opacity="opaque">
-288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
-304.0 688.0 l
-368.0 704.0 l
 h
 </path>
 <path fill="red" layer="9" opacity="50%" stroke="white" stroke-opacity="opaque">
@@ -627,41 +563,10 @@ h
 368.0 704.0 l
 h
 </path>
-<path fill="lightgreen" layer="10" opacity="50%" stroke="white" stroke-opacity="opaque">
-288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
-304.0 688.0 l
-368.0 704.0 l
-352.0 656.0 l
-h
-</path>
 <path fill="red" layer="10" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
 368.0 704.0 l
 352.0 656.0 l
-h
-</path>
-<path fill="lightgreen" layer="11" opacity="50%" stroke="white" stroke-opacity="opaque">
-288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
-304.0 688.0 l
-368.0 704.0 l
-352.0 656.0 l
-384.0 592.0 l
 h
 </path>
 <path fill="red" layer="11" opacity="50%" stroke="white" stroke-opacity="opaque">
@@ -672,35 +577,12 @@ h
 </path>
 <path fill="lightgreen" layer="12" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
-304.0 688.0 l
-368.0 704.0 l
-352.0 656.0 l
 384.0 592.0 l
 304.0 576.0 l
 h
 </path>
 <path fill="lightgreen" layer="13" opacity="50%" stroke="white" stroke-opacity="opaque">
 288.0 480.0 m
-384.0 512.0 l
-448.0 608.0 l
-400.0 736.0 l
-272.0 768.0 l
-192.0 736.0 l
-160.0 672.0 l
-192.0 576.0 l
-256.0 720.0 l
-304.0 688.0 l
-368.0 704.0 l
-352.0 656.0 l
-384.0 592.0 l
 304.0 576.0 l
 272.0 528.0 l
 h

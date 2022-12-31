@@ -45,7 +45,7 @@ public class DocumentManager {
                     NodeList pageNodeList = ipeChildElement.getChildNodes();
 
                     // generate new layers
-                    for(int j = 0 ; j < layers.size(); j++) {
+                    for(int j = 0 ; j <= (Integer.parseInt(layers.get(layers.size()-1).view)); j++) {
                         Element element = ipeChildElement.getOwnerDocument().createElement("layer");
                         ipeChildElement.appendChild(element);
 
@@ -54,15 +54,15 @@ public class DocumentManager {
                         element.setAttributeNode(attr);
                     }
 
-                    // generate new views
+                    // generate new views (need to fix)
                     String view = "";
-                    for(int j = 0 ; j <= Integer.parseInt(layers.get(layers.size()-1).view) - 1; j++) { // need to fix
+                    for(int j = 0 ; j < layers.size() - 1; j++) {
                         if(j == 0) {
                             Element element = ipeChildElement.getOwnerDocument().createElement("view");
                             ipeChildElement.appendChild(element);
                             Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
                             view = "0";
-                            attr.setValue(view + " " + String.valueOf(layers.size() - 1));
+                            attr.setValue(view + " " + (Integer.parseInt(layers.get(layers.size()-1).view)));
                             element.setAttributeNode(attr);
                         }
                         else if(j == 1) {
@@ -70,7 +70,7 @@ public class DocumentManager {
                             ipeChildElement.appendChild(element);
                             Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
                             view = "1";
-                            attr.setValue("0 " + view + " " + String.valueOf(layers.size() - 1));
+                            attr.setValue("0 " + view + " " + (Integer.parseInt(layers.get(layers.size()-1).view)));
                             element.setAttributeNode(attr);
                         }
                         else {
@@ -81,7 +81,7 @@ public class DocumentManager {
                                 ipeChildElement.appendChild(element);
                                 Attr attr = ipeChildElement.getOwnerDocument().createAttribute("layers");
                                 view = layers.get(j).view;
-                                attr.setValue("0 " + view + " " + String.valueOf(layers.size() - 1));
+                                attr.setValue("0 " + view + " " + (Integer.parseInt(layers.get(layers.size()-1).view)));
                                 element.setAttributeNode(attr);
                             }
                         }

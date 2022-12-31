@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.26">
-<info created="D:20200813140717" modified="D:20221212160221" numberpages="yes"/>
+<info created="D:20200813140717" modified="D:20221216193949" numberpages="yes"/>
 <preamble>\usepackage[T1]{fontenc} 
 \usepackage[sfdefault]{overlock}
 \usepackage[small,euler-digits,icomma,OT1]{eulervm}
@@ -2188,21 +2188,20 @@ h
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
 <path layer="alpha" stroke="black">
-256 384 m
-144 272 l
-208 160 l
-368 96 l
-560 128 l
-704 256 l
-624 400 l
-432 512 l
-304 416 l
-464 416 l
-528 304 l
-448 208 l
-304 224 l
-240 288 l
-272 336 l
+288 128 m
+384 80 l
+496 64 l
+640 112 l
+704 208 l
+688 336 l
+624 448 l
+496 496 l
+368 480 l
+288 400 l
+480 432 l
+592 352 l
+608 208 l
+432 240 l
 h
 </path>
 </page>

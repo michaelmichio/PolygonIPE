@@ -99,25 +99,26 @@ public class AreaOfPolygon implements CGA {
         double totalArea = 0.0;
         double additionArea = 0.0;
         for(int i = 0; i < vertices.size() - 2; i++) {
-            if(i > 0) {
-                // ---
-                attributes = new HashMap<>();
-                paths = new ArrayList<>();
 
-                points = new ArrayList<>();
-                for(Point pp : vertices) {
-                    points.add(pp);
-                }
-
-                attributes.put("layer", String.valueOf(currentLayer));
-                attributes.put("fill", "lightgreen");
-                attributes.put("opacity", "50%");
-                paths.add(new Path(points).subPath(0, i+1));
-                view = "";
-                layers.add(new Layer("path", view, attributes, paths, null));
-                currentLayer++;
-                // ---
-            }
+            // ...
+//            if(i > 0) {
+//                attributes = new HashMap<>();
+//                paths = new ArrayList<>();
+//
+//                points = new ArrayList<>();
+//                for(Point pp : vertices) {
+//                    points.add(pp);
+//                }
+//
+//                attributes.put("layer", String.valueOf(currentLayer));
+//                attributes.put("fill", "lightgreen");
+//                attributes.put("opacity", "50%");
+//                paths.add(new Path(points).subPath(0, i+1));
+//                view = "";
+//                layers.add(new Layer("path", view, attributes, paths, null));
+//                currentLayer++;
+//            }
+            // ...
 
             LineSegment ls = new LineSegment(new Point(vertices.get(0).x, vertices.get(0).y),
                     new Point(vertices.get(i + 1).x, vertices.get(i + 1).y));
@@ -136,26 +137,54 @@ public class AreaOfPolygon implements CGA {
                 attributes.put("fill", "lightgreen");
                 attributes.put("opacity", "50%");
                 paths.add(new Path(points).triangulation(0, i+1, i+2));
-                view = currentLayer - 1 + " " + currentLayer;
+                // ...
+                // view = currentLayer - 1 + " " + currentLayer;
+                // ...
+                view = String.valueOf(currentLayer);
+                // ...
                 layers.add(new Layer("path", view, attributes, paths, null));
 
+                // ...
                 // label
-//                additionArea = new Path(points).triangle(i, i+1, i+2);
-//                String[] texts = new String[1];
-//                texts[0] = totalArea + " + " + additionArea + " = " + totalArea + additionArea;
-//                paths.add(new Path(points).text(texts));
-//                totalArea += new Path(points).triangle(i, i+1, i+2);
-//
-//                attributes.put("matrix", "1 0 0 1 -656 -32");
-//                attributes.put("transformations", "translations");
-//                attributes.put("pos", "672 48");
-//                attributes.put("stroke", "black");
-//                attributes.put("type", "label");
-//                attributes.put("width", "186.439");
-//                attributes.put("height", "18.5735");
-//                attributes.put("depth", "0.2475");
-//                attributes.put("valign", "baseline");
-//                layers.add(new Layer("text", attributes, paths, null));
+                attributes = new HashMap<>();
+                paths = new ArrayList<>();
+
+                attributes.put("matrix", "1 0 0 1 -656 -32");
+                attributes.put("transformations", "translations");
+                attributes.put("pos", "672 48");
+                attributes.put("stroke", "black");
+                attributes.put("type", "label");
+                attributes.put("width", "186.439");
+                attributes.put("height", "18.5735");
+                attributes.put("depth", "0.2475");
+                attributes.put("valign", "baseline");
+
+                additionArea = new Path(points).triangle(0, i+1, i+2);
+                String[] texts = new String[1];
+                texts[0] = (int) totalArea + " + " + (int) additionArea + " = " + (int) (totalArea + additionArea);
+                paths.add(new Path(points).text(texts));
+                totalArea += additionArea;
+
+                layers.add(new Layer("text", "", attributes, paths, null));
+                // end label
+                // ...
+
+                // ...
+                attributes = new HashMap<>();
+                paths = new ArrayList<>();
+
+                points = new ArrayList<>();
+                for(Point pp : vertices) {
+                    points.add(pp);
+                }
+
+                attributes.put("layer", String.valueOf(currentLayer));
+                attributes.put("fill", "lightgreen");
+                attributes.put("opacity", "50%");
+                paths.add(new Path(points).subPath(0, i+1));
+
+                layers.add(new Layer("path", "", attributes, paths, null));
+                // ...
 
                 currentLayer++;
             }
@@ -172,10 +201,58 @@ public class AreaOfPolygon implements CGA {
                 attributes.put("fill", "red");
                 attributes.put("opacity", "50%");
                 paths.add(new Path(points).triangulation(0, i+1, i+2));
-                view = currentLayer - 1 + " " + currentLayer;
+                // ...
+                // view = currentLayer - 1 + " " + currentLayer;
+                // ...
+                view = String.valueOf(currentLayer);
+                // ...
                 layers.add(new Layer("path", view, attributes, paths, null));
+
+                // ...
+                // label
+                attributes = new HashMap<>();
+                paths = new ArrayList<>();
+
+                attributes.put("matrix", "1 0 0 1 -656 -32");
+                attributes.put("transformations", "translations");
+                attributes.put("pos", "672 48");
+                attributes.put("stroke", "black");
+                attributes.put("type", "label");
+                attributes.put("width", "186.439");
+                attributes.put("height", "18.5735");
+                attributes.put("depth", "0.2475");
+                attributes.put("valign", "baseline");
+
+                additionArea = new Path(points).triangle(0, i+1, i+2);
+                String[] texts = new String[1];
+                texts[0] = (int) totalArea + " - " + (int) additionArea + " = " + (int) (totalArea - additionArea);
+                paths.add(new Path(points).text(texts));
+                totalArea -= additionArea;
+
+                layers.add(new Layer("text", "", attributes, paths, null));
+                // end label
+                // ...
+
+                // ...
+                attributes = new HashMap<>();
+                paths = new ArrayList<>();
+
+                points = new ArrayList<>();
+                for(Point pp : vertices) {
+                    points.add(pp);
+                }
+
+                attributes.put("layer", String.valueOf(currentLayer));
+                attributes.put("fill", "lightgreen");
+                attributes.put("opacity", "50%");
+                paths.add(new Path(points).subPath(0, i+1));
+
+                layers.add(new Layer("path", "", attributes, paths, null));
+                // ...
+
                 currentLayer++;
 
+                // ...
 //                attributes = new HashMap<>();
 //                paths = new ArrayList<>();
 //
@@ -190,11 +267,55 @@ public class AreaOfPolygon implements CGA {
 //                paths.add(new Path(points).triangulation(0, i+1, i+2));
 //                layers.add(new Layer("path", attributes, paths, null));
 //                currentLayer++;
+                // ...
             }
             else { // collinear
                 // ...
             }
         }
+
+        // ...
+        attributes = new HashMap<>();
+        paths = new ArrayList<>();
+
+        points = new ArrayList<>();
+        for(Point pp : vertices) {
+            points.add(pp);
+        }
+
+        attributes.put("layer", String.valueOf(currentLayer));
+        attributes.put("fill", "lightgreen");
+        attributes.put("opacity", "50%");
+        paths.add(new Path(points).subPath(0, vertices.size()-1));
+
+        view = String.valueOf(currentLayer);
+        layers.add(new Layer("path", view, attributes, paths, null));
+
+        // ...
+        // label
+        attributes = new HashMap<>();
+        paths = new ArrayList<>();
+
+        attributes.put("matrix", "1 0 0 1 -656 -32");
+        attributes.put("transformations", "translations");
+        attributes.put("pos", "672 48");
+        attributes.put("stroke", "black");
+        attributes.put("type", "label");
+        attributes.put("width", "186.439");
+        attributes.put("height", "18.5735");
+        attributes.put("depth", "0.2475");
+        attributes.put("valign", "baseline");
+
+        String[] texts = new String[1];
+        texts[0] = "" + (int) totalArea;
+        paths.add(new Path(points).text(texts));
+
+        layers.add(new Layer("text", "", attributes, paths, null));
+        // end label
+        // ...
+
+        currentLayer++;
+        // ...
 
         attributes = new HashMap<>();
         paths = new ArrayList<>();
